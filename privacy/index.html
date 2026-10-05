@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11151b">
+  <meta name="description" content="OwlLinker Page privacy policy: information processed, permissions, local handling, and user choices.">
+  <title>Privacy Policy — OwlLinker Page</title>
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; --bg:#11151b; --panel:#191f27; --text:#f5f4f0; --muted:#adb6bf; --line:rgba(228,235,241,.12); --lime:#d3ee84; --page:#9c8aff; font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); font-synthesis:none; text-rendering:optimizeLegibility; }
+    * { box-sizing:border-box; } body { margin:0; min-width:320px; background:var(--bg); } a { color:var(--lime); text-underline-offset:3px; } .shell { width:min(860px,calc(100% - 40px)); margin:0 auto; }
+    header { height:76px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); } .brand { display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:720; letter-spacing:-.04em; } .brand img { width:32px; height:32px; } select { border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:var(--muted); background:var(--panel); font:inherit; font-size:13px; }
+    main { padding:58px 0 72px; } .eyebrow { color:var(--page); font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; } h1 { margin:12px 0 8px; font-size:clamp(34px,6vw,48px); letter-spacing:-.065em; } .updated { color:var(--muted); font-size:13px; } .intro { margin:28px 0 36px; padding:18px 20px; border:1px solid rgba(156,138,255,.24); border-radius:16px; background:rgba(156,138,255,.07); color:#d6d0ff; line-height:1.75; }
+    section { padding:24px 0; border-top:1px solid var(--line); } h2 { margin:0 0 12px; font-size:20px; letter-spacing:-.035em; } p, li { color:var(--muted); font-size:14px; line-height:1.85; } p { margin:9px 0; } ul { padding-left:22px; margin:10px 0 0; } li+li { margin-top:8px; } .contact-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; } .contact-links a { display:inline-flex; align-items:center; min-height:40px; padding:0 14px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:var(--panel); font-size:13px; } footer { padding:22px 0 34px; border-top:1px solid var(--line); color:#87919b; font-size:12px; }
+    @media (prefers-color-scheme:light) { :root { color-scheme:light; --bg:#f7f8f5; --panel:#fff; --text:#1b2423; --muted:#53615c; --line:rgba(32,54,47,.14); --lime:#55732d; --page:#6658b5; } .intro { color:#514889; background:rgba(156,138,255,.08); } footer { color:#66736e; } }
+  </style>
+</head>
+<body>
+  <header class="shell"><a class="brand" href="../"><img src="../assets/logo.svg" alt=""><span>OwlLinker</span></a><select id="language" aria-label="Language"><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option></select></header>
+  <main class="shell" id="content"></main>
+  <footer class="shell"><a href="../" id="homeLink">OwlLinker home</a> · © <span id="year"></span> OwlLinker</footer>
+  <script>
+    const policy = {
+      en: {
+        lang:'en', eyebrow:'OwlLinker Page', title:'Privacy Policy', updated:'Last updated: October 5, 2026', intro:'OwlLinker Page is a browser extension for editing and organizing content displayed on web pages. This policy explains what the extension processes and how it handles that information.',
+        sections:[
+          ['Information processed', '<p><strong>Page content and selections.</strong> Text and elements are read or changed in the current tab only when you invoke a Page feature. Editing, highlighting, keyword matching, clipping, screenshots, and document export are processed in the browser. The Feishu/Lark converter, when explicitly used, reads the selected document through the provider’s same-origin APIs.</p><p><strong>Settings and keyword lists.</strong> These are stored in browser extension storage. They may sync through your browser account according to that browser’s sync behavior.</p>'],
+          ['Requests to websites and icon services', '<p>Some user-triggered link, page metadata, document, or image operations request the URL you select or open. Those requests go to the relevant website or image host, not to an OwlLinker server. Depending on the operation, the browser may attach credentials accepted for that destination.</p><p>When displaying saved reading-list entries, the extension may request a favicon from Google’s S2 favicon service using the saved site’s hostname. These providers receive the requests and may process them under their own privacy policies.</p>'],
+          ['Local Native Host', '<p>Obsidian image saving and optional PDF rendering can send the content you selected, the page URL, image URLs, and (for a remote image) cookies matching that image URL to the OwlLinker Native Host installed on your device. The Host performs the requested operation locally. OwlLinker does not operate a relay server for this flow. Remote image requests made by the Host reach the image’s website.</p>'],
+          ['Read aloud', '<p>When you start Page read-aloud, selected text is sent to a loopback service at <code>127.0.0.1:51873</code> on the same device. It is not sent to an OwlLinker cloud service.</p>'],
+          ['Information not collected by OwlLinker', '<p>The Page extension does not require an OwlLinker account. The current Page package does not send page contents, selections, browsing history, settings, or usage analytics to an OwlLinker-operated server. This does not cover information sent to a website you ask the extension to access, browser-vendor sync, the locally installed Native Host, or a support/payment provider.</p>'],
+          ['Retention and control', '<p>Extension settings and keyword lists remain in browser extension storage until you change or remove them. Files you export and notes or images you save to Obsidian are stored at destinations you choose. OwlLinker does not control retention by websites, browser sync, Patreon, or other third parties. Removing the extension removes its browser-managed data according to the browser’s behavior; export any settings you want to keep first.</p>'],
+          ['Permissions', '<p>Page requests access to web pages so its user-invoked editing and organization tools can work on arbitrary sites. It also requests browser APIs for current-tab interaction, scripts, downloads, context menus, local messaging, settings, clipboard operations, and the optional Obsidian image workflow. Cookie access is used only when you explicitly save remote images to Obsidian, to retrieve cookies scoped to those image URLs for the local Host. Page does not use declarative network request rules.</p>'],
+          ['Contact and support', '<p>For privacy questions or support, contact OwlLinker through one of the official support channels:</p><div class="contact-links"><a href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">爱发电 · Afdian</a></div>']
+        ], home:'OwlLinker home'
+      },
+      'zh-CN': {
+        lang:'zh-CN', eyebrow:'OwlLinker Page', title:'隐私政策', updated:'最后更新：2026 年 10 月 5 日', intro:'OwlLinker Page 是一款用于编辑和整理网页内容的浏览器扩展。本政策说明扩展会处理哪些信息，以及如何处理这些信息。',
+        sections:[
+          ['处理的信息', '<p><strong>网页内容和选区。</strong>只有在你主动使用 Page 功能时，扩展才会读取或修改当前标签页中的文字和元素。编辑、高亮、关键词匹配、剪藏、截图和文档导出都在浏览器中处理。只有在你明确使用飞书/Lark 转换功能时，扩展才会通过服务提供方的同源 API 读取所选文档。</p><p><strong>设置和关键词列表。</strong>这些内容存储在浏览器扩展存储中，并可能按照浏览器账号的同步设置进行同步。</p>'],
+          ['网站和图标服务请求', '<p>部分由你主动触发的链接、页面元数据、文档或图片操作会请求你选择或打开的网址。请求会发往相应网站或图片源，不会发往 OwlLinker 服务器。根据操作类型，浏览器可能会附带目标网站接受的凭据。</p><p>显示稍后阅读列表时，扩展可能使用已保存网站的主机名向 Google S2 网站图标服务请求图标。这些服务会收到相关请求，并可能依据各自的隐私政策处理信息。</p>'],
+          ['本机 Native Host', '<p>将图片保存到 Obsidian 和可选的 PDF 渲染功能，可能会把你选择的内容、页面网址、图片网址，以及远程图片网址匹配的 Cookie，发送给安装在你设备上的 OwlLinker Native Host。Host 在本机执行请求的操作。OwlLinker 不为此流程运行中继服务器。Host 发出的远程图片请求会到达图片所在网站。</p>'],
+          ['朗读', '<p>启动 Page 朗读时，所选文本会发送到同一设备上的本地回环服务 <code>127.0.0.1:51873</code>，不会发送到 OwlLinker 云端服务。</p>'],
+          ['OwlLinker 不收集的信息', '<p>Page 扩展不要求 OwlLinker 账号。当前 Page 包不会将网页内容、选区、浏览历史、设置或使用分析数据发送到 OwlLinker 运营的服务器。本说明不涵盖扩展按你的要求访问的网站、浏览器厂商同步、本机 Native Host 或支持/付款服务商收到的信息。</p>'],
+          ['保留与控制', '<p>扩展设置和关键词列表会保留在浏览器扩展存储中，直到你修改或移除它们。你导出的文件以及保存到 Obsidian 的笔记或图片会存放在你选择的位置。OwlLinker 无法控制网站、浏览器同步、Patreon 或其他第三方的数据保留。移除扩展后，浏览器会按自身规则移除扩展管理的数据；请先导出需要保留的设置。</p>'],
+          ['权限', '<p>Page 请求网页访问权限，以便其用户主动调用的编辑和整理工具可在任意网站上工作。扩展还请求当前标签页交互、脚本、下载、上下文菜单、本机消息、设置、剪贴板操作和可选 Obsidian 图片流程所需的浏览器 API。Cookie 权限仅在你主动将远程图片保存到 Obsidian 时使用，以便为本机 Host 获取与图片网址匹配的 Cookie。Page 不使用声明式网络请求规则。</p>'],
+          ['联系与支持', '<p>如有隐私问题或需要支持，请通过以下 OwlLinker 官方支持渠道联系：</p><div class="contact-links"><a href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">爱发电</a></div>']
+        ], home:'OwlLinker 官网'
+      },
+      'zh-TW': {
+        lang:'zh-TW', eyebrow:'OwlLinker Page', title:'隱私權政策', updated:'最後更新：2026 年 10 月 5 日', intro:'OwlLinker Page 是一款用於編輯與整理網頁內容的瀏覽器擴充功能。本政策說明擴充功能會處理哪些資訊，以及如何處理這些資訊。',
+        sections:[
+          ['處理的資訊', '<p><strong>網頁內容與選取範圍。</strong>只有在你主動使用 Page 功能時，擴充功能才會讀取或修改目前分頁中的文字與元素。編輯、標註、關鍵字比對、剪藏、截圖與文件匯出都在瀏覽器中處理。只有在你明確使用飛書/Lark 轉換功能時，擴充功能才會透過服務提供者的同源 API 讀取所選文件。</p><p><strong>設定與關鍵字清單。</strong>這些內容儲存在瀏覽器擴充功能儲存空間中，並可能依照瀏覽器帳戶的同步設定進行同步。</p>'],
+          ['網站與圖示服務請求', '<p>部分由你主動觸發的連結、頁面中繼資料、文件或圖片操作會請求你選取或開啟的網址。請求會傳送至相關網站或圖片來源，不會傳送至 OwlLinker 伺服器。依操作類型而定，瀏覽器可能會附帶目標網站接受的憑證。</p><p>顯示稍後閱讀清單時，擴充功能可能使用已儲存網站的主機名稱向 Google S2 網站圖示服務請求圖示。這些服務會收到相關請求，並可能依據各自的隱私權政策處理資訊。</p>'],
+          ['本機 Native Host', '<p>將圖片儲存至 Obsidian 及選用的 PDF 渲染功能，可能會將你選取的內容、頁面網址、圖片網址，以及遠端圖片網址相符的 Cookie，傳送給安裝在你裝置上的 OwlLinker Native Host。Host 會在本機執行所要求的操作。OwlLinker 不會為此流程執行中繼伺服器。Host 發出的遠端圖片請求會送達圖片所在網站。</p>'],
+          ['朗讀', '<p>啟動 Page 朗讀時，所選文字會傳送至同一裝置上的本機迴圈服務 <code>127.0.0.1:51873</code>，不會傳送至 OwlLinker 雲端服務。</p>'],
+          ['OwlLinker 不會收集的資訊', '<p>Page 擴充功能不要求 OwlLinker 帳戶。目前的 Page 套件不會將網頁內容、選取範圍、瀏覽記錄、設定或使用分析資料傳送至 OwlLinker 營運的伺服器。本說明不涵蓋擴充功能依你要求存取的網站、瀏覽器廠商同步、本機 Native Host 或支援/付款服務商收到的資訊。</p>'],
+          ['保留與控制', '<p>擴充功能設定與關鍵字清單會保留在瀏覽器擴充功能儲存空間中，直到你修改或移除它們。你匯出的檔案，以及儲存至 Obsidian 的筆記或圖片，會存放在你選擇的位置。OwlLinker 無法控制網站、瀏覽器同步、Patreon 或其他第三方的資料保留。移除擴充功能後，瀏覽器會依自身行為移除擴充功能管理的資料；請先匯出需要保留的設定。</p>'],
+          ['權限', '<p>Page 會要求網頁存取權限，讓使用者主動呼叫的編輯與整理工具可在任意網站上運作。擴充功能也會要求目前分頁互動、指令碼、下載、內容功能表、本機訊息、設定、剪貼簿操作及選用 Obsidian 圖片流程所需的瀏覽器 API。Cookie 權限僅在你主動將遠端圖片儲存至 Obsidian 時使用，以便為本機 Host 取得與圖片網址相符的 Cookie。Page 不使用宣告式網路請求規則。</p>'],
+          ['聯絡與支援', '<p>如有隱私權問題或需要支援，請透過以下 OwlLinker 官方支援管道聯絡：</p><div class="contact-links"><a href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">愛發電</a></div>']
+        ], home:'OwlLinker 官網'
+      },
+      ja: {
+        lang:'ja', eyebrow:'OwlLinker Page', title:'プライバシーポリシー', updated:'最終更新日：2026年10月5日', intro:'OwlLinker Page は、ウェブページに表示されたコンテンツを編集・整理するブラウザー拡張機能です。本ポリシーでは、拡張機能が処理する情報とその取り扱いについて説明します。',
+        sections:[
+          ['処理する情報', '<p><strong>ページのコンテンツと選択範囲。</strong>Page の機能をユーザーが実行した場合に限り、現在のタブ内のテキストや要素を読み取り、変更します。編集、ハイライト、キーワード照合、クリップ、スクリーンショット、文書のエクスポートはブラウザー内で処理されます。Feishu/Lark 変換機能を明示的に使用した場合は、提供元の同一オリジン API を通じて選択した文書を読み取ります。</p><p><strong>設定とキーワード一覧。</strong>ブラウザー拡張機能のストレージに保存されます。ブラウザーアカウントの同期設定に応じて同期される場合があります。</p>'],
+          ['ウェブサイトとアイコンサービスへのリクエスト', '<p>ユーザーが開始する一部のリンク、ページメタデータ、文書、画像の操作では、選択または開いた URL にリクエストします。リクエスト先は該当するウェブサイトまたは画像ホストであり、OwlLinker のサーバーではありません。操作によっては、ブラウザーが宛先で受け入れられる認証情報を添付する場合があります。</p><p>後で読むリストの項目を表示するとき、保存されたサイトのホスト名を使って Google S2 favicon サービスにアイコンをリクエストする場合があります。これらの提供元はリクエストを受け取り、それぞれのプライバシーポリシーに従って処理することがあります。</p>'],
+          ['ローカル Native Host', '<p>Obsidian への画像保存と任意の PDF レンダリングでは、選択したコンテンツ、ページ URL、画像 URL、およびリモート画像の場合はその URL に一致する Cookie を、端末にインストールされた OwlLinker Native Host に送信することがあります。Host は要求された処理を端末内で実行します。この処理のために OwlLinker が中継サーバーを運用することはありません。Host によるリモート画像リクエストは画像のウェブサイトに送られます。</p>'],
+          ['読み上げ', '<p>Page の読み上げを開始すると、選択したテキストは同じ端末上のループバックサービス <code>127.0.0.1:51873</code> に送信されます。OwlLinker のクラウドサービスには送信されません。</p>'],
+          ['OwlLinker が収集しない情報', '<p>Page 拡張機能の利用に OwlLinker アカウントは必要ありません。現在の Page パッケージは、ページ内容、選択範囲、閲覧履歴、設定、利用分析を OwlLinker が運営するサーバーに送信しません。ユーザーが拡張機能にアクセスさせるウェブサイト、ブラウザー事業者の同期、端末内の Native Host、サポート/決済事業者に送られる情報は対象外です。</p>'],
+          ['保存期間と管理', '<p>拡張機能の設定とキーワード一覧は、変更または削除されるまでブラウザーの拡張機能ストレージに残ります。エクスポートしたファイルや Obsidian に保存したノート・画像は、ユーザーが選択した保存先に保管されます。ウェブサイト、ブラウザー同期、Patreon など第三者による保存期間は OwlLinker が管理しません。拡張機能を削除すると、ブラウザーの動作に従って管理データが削除されます。必要な設定は事前にエクスポートしてください。</p>'],
+          ['権限', '<p>Page は、ユーザーが実行する編集・整理機能を任意のサイトで動作させるため、ウェブページへのアクセスを要求します。また、現在のタブとの連携、スクリプト、ダウンロード、コンテキストメニュー、ローカルメッセージ、設定、クリップボード操作、任意の Obsidian 画像処理に必要なブラウザー API を要求します。Cookie へのアクセスは、ユーザーがリモート画像を Obsidian に保存する操作を明示的に行った場合に限り、その画像 URL に一致する Cookie をローカル Host に渡すために使用します。Page は declarativeNetRequest ルールを使用しません。</p>'],
+          ['お問い合わせ・サポート', '<p>プライバシーに関する質問やサポートについては、以下の公式サポート窓口をご利用ください。</p><div class="contact-links"><a href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">爱发电 · Afdian</a></div>']
+        ], home:'OwlLinker ホーム'
+      },
+      ko: {
+        lang:'ko', eyebrow:'OwlLinker Page', title:'개인정보 처리방침', updated:'최종 업데이트: 2026년 10월 5일', intro:'OwlLinker Page는 웹페이지에 표시된 콘텐츠를 편집하고 정리하는 브라우저 확장 프로그램입니다. 이 정책은 확장 프로그램이 처리하는 정보와 그 처리 방식을 설명합니다.',
+        sections:[
+          ['처리하는 정보', '<p><strong>페이지 콘텐츠 및 선택 영역.</strong>사용자가 Page 기능을 실행할 때만 현재 탭의 텍스트와 요소를 읽거나 변경합니다. 편집, 강조 표시, 키워드 일치, 클리핑, 스크린샷, 문서 내보내기는 브라우저에서 처리됩니다. Feishu/Lark 변환 기능을 명시적으로 사용할 때는 제공업체의 동일 출처 API를 통해 선택한 문서를 읽습니다.</p><p><strong>설정 및 키워드 목록.</strong>브라우저 확장 프로그램 저장소에 저장되며, 브라우저 계정의 동기화 설정에 따라 동기화될 수 있습니다.</p>'],
+          ['웹사이트 및 아이콘 서비스 요청', '<p>사용자가 시작하는 일부 링크, 페이지 메타데이터, 문서 또는 이미지 작업은 사용자가 선택하거나 연 URL에 요청을 보냅니다. 요청은 해당 웹사이트 또는 이미지 호스트로 전송되며 OwlLinker 서버로 전송되지 않습니다. 작업에 따라 브라우저가 대상에서 허용되는 자격 증명을 첨부할 수 있습니다.</p><p>나중에 읽기 목록 항목을 표시할 때 저장된 사이트의 호스트 이름을 사용해 Google S2 파비콘 서비스에 아이콘을 요청할 수 있습니다. 해당 제공업체는 요청을 받고 자체 개인정보 처리방침에 따라 처리할 수 있습니다.</p>'],
+          ['로컬 Native Host', '<p>Obsidian 이미지 저장 및 선택적 PDF 렌더링은 사용자가 선택한 콘텐츠, 페이지 URL, 이미지 URL, 원격 이미지의 경우 해당 이미지 URL에 일치하는 쿠키를 기기에 설치된 OwlLinker Native Host로 보낼 수 있습니다. Host는 요청된 작업을 기기에서 로컬로 수행합니다. OwlLinker는 이 흐름을 위한 중계 서버를 운영하지 않습니다. Host의 원격 이미지 요청은 이미지 웹사이트로 전송됩니다.</p>'],
+          ['음성 읽기', '<p>Page 음성 읽기를 시작하면 선택한 텍스트가 같은 기기의 루프백 서비스 <code>127.0.0.1:51873</code>로 전송됩니다. OwlLinker 클라우드 서비스로 전송되지 않습니다.</p>'],
+          ['OwlLinker가 수집하지 않는 정보', '<p>Page 확장 프로그램에는 OwlLinker 계정이 필요하지 않습니다. 현재 Page 패키지는 페이지 콘텐츠, 선택 영역, 검색 기록, 설정 또는 사용 분석 정보를 OwlLinker가 운영하는 서버로 보내지 않습니다. 사용자가 확장 프로그램에 접근하도록 요청한 웹사이트, 브라우저 업체 동기화, 로컬 Native Host, 지원/결제 제공업체에 전송되는 정보는 여기에 포함되지 않습니다.</p>'],
+          ['보관 및 관리', '<p>확장 프로그램 설정과 키워드 목록은 사용자가 변경하거나 삭제할 때까지 브라우저 확장 프로그램 저장소에 남습니다. 내보낸 파일과 Obsidian에 저장한 노트 또는 이미지는 사용자가 선택한 위치에 저장됩니다. 웹사이트, 브라우저 동기화, Patreon 또는 기타 제3자의 보관 기간은 OwlLinker가 관리하지 않습니다. 확장 프로그램을 제거하면 브라우저 동작에 따라 브라우저가 관리하는 데이터가 제거됩니다. 보관할 설정은 먼저 내보내세요.</p>'],
+          ['권한', '<p>Page는 사용자가 실행하는 편집 및 정리 기능이 모든 사이트에서 작동하도록 웹페이지 접근을 요청합니다. 또한 현재 탭 상호작용, 스크립트, 다운로드, 컨텍스트 메뉴, 로컬 메시지, 설정, 클립보드 작업 및 선택적 Obsidian 이미지 흐름에 필요한 브라우저 API를 요청합니다. 쿠키 접근은 사용자가 원격 이미지를 Obsidian에 저장하도록 명시적으로 요청한 경우에만 로컬 Host가 해당 이미지 URL에 일치하는 쿠키를 받을 수 있도록 사용됩니다. Page는 declarativeNetRequest 규칙을 사용하지 않습니다.</p>'],
+          ['문의 및 지원', '<p>개인정보 관련 문의나 지원이 필요하면 다음 OwlLinker 공식 지원 채널을 이용하세요.</p><div class="contact-links"><a href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">爱发电 · Afdian</a></div>']
+        ], home:'OwlLinker 홈'
+      }
+    };
+    const selector = document.getElementById('language');
+    const content = document.getElementById('content');
+    const homeLink = document.getElementById('homeLink');
+    const render = code => {
+      const data = policy[code] || policy.en;
+      document.documentElement.lang = data.lang;
+      document.title = `${data.title} — OwlLinker Page`;
+      content.innerHTML = `<div class="eyebrow">${data.eyebrow}</div><h1>${data.title}</h1><div class="updated">${data.updated}</div><div class="intro">${data.intro}</div>${data.sections.map(([heading, body]) => `<section><h2>${heading}</h2>${body}</section>`).join('')}`;
+      homeLink.textContent = data.home;
+      try { localStorage.setItem('owllinker-site-language', code); } catch {}
+    };
+    const supported = ['zh-CN','zh-TW','en','ja','ko'];
+    let preferred = 'en';
+    try { preferred = localStorage.getItem('owllinker-site-language') || navigator.language; } catch { preferred = navigator.language; }
+    if (!supported.includes(preferred)) preferred = supported.find(x => x.toLowerCase() === preferred.toLowerCase()) || 'en';
+    selector.value = preferred; selector.addEventListener('change', () => render(selector.value));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    render(preferred);
+  </script>
+</body>
+</html>
