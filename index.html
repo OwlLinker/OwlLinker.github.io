@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11151b">
+  <meta name="description" content="OwlLinker 是一组为日常网页工作打造的浏览器扩展。即将发布 OwlLinker Page。">
+  <meta property="og:title" content="OwlLinker — Make the web work for you">
+  <meta property="og:description" content="六个专注的浏览器扩展，让网页工作更顺手。OwlLinker Page 即将发布。">
+  <meta property="og:image" content="assets/logo.png">
+  <title>OwlLinker — 让网页工作更顺手</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #11151b;
+      --panel: #191f27;
+      --panel-2: #1d242d;
+      --text: #f5f4f0;
+      --muted: #a4adb8;
+      --line: rgba(228, 235, 241, .11);
+      --lime: #d3ee84;
+      --mint: #9fe0c5;
+      --page: #9c8aff;
+      --radius: 24px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; background: var(--bg); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 17px; font-weight: 730; letter-spacing: -.04em; }
+    .brand img { width: 34px; height: 34px; object-fit: contain; }
+    .nav { display: flex; align-items: center; gap: 31px; color: #bec5cc; font-size: 13px; }
+    .nav a { transition: color .2s ease; }
+    .nav a:hover { color: var(--text); }
+    .language { appearance: none; border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 8px 12px; cursor: pointer; font-size: 12px; }
+    .hero { position: relative; min-height: 575px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 48px; padding: 70px 0 82px; }
+    .hero::before { content: ""; position: absolute; width: 530px; height: 440px; right: -80px; top: 42px; background: radial-gradient(ellipse at center, rgba(111, 136, 147, .2), rgba(17, 21, 27, 0) 68%); pointer-events: none; }
+    .hero-copy, .hero-art { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--lime); font-size: 12px; font-weight: 680; letter-spacing: .09em; text-transform: uppercase; }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 14px rgba(211, 238, 132, .7); }
+    h1 { max-width: 620px; margin: 22px 0 18px; font-size: clamp(46px, 6vw, 76px); line-height: 1.04; letter-spacing: -.075em; font-weight: 720; }
+    h1 span { color: var(--lime); }
+    .lead { max-width: 520px; color: #adb6bf; font-size: 16px; line-height: 1.85; }
+    .actions { display: flex; gap: 12px; margin-top: 31px; flex-wrap: wrap; }
+    .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; border: 1px solid transparent; border-radius: 12px; font-size: 13px; font-weight: 680; transition: transform .2s, background .2s, border-color .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--lime); color: #182016; }
+    .button-primary:hover { background: #e0f49e; }
+    .button-secondary { border-color: rgba(236, 241, 244, .18); color: #e3e6e8; background: rgba(255,255,255,.025); }
+    .button-secondary:hover { border-color: rgba(236, 241, 244, .35); background: rgba(255,255,255,.06); }
+    .button svg { width: 15px; height: 15px; }
+    .browser-note { display: flex; align-items: center; gap: 13px; color: #828d98; font-size: 11px; margin-top: 31px; }
+    .browser-note strong { color: #c6cbd0; font-weight: 550; }
+    .browser-note i { width: 3px; height: 3px; border-radius: 100%; background: #707a84; }
+    .hero-art { min-height: 420px; display: grid; place-items: center; }
+    .orbit { position: absolute; width: 390px; height: 390px; border: 1px solid rgba(201, 224, 221, .12); border-radius: 50%; transform: rotate(-18deg) scaleY(.7); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(201, 224, 221, .1); border-radius: inherit; inset: 24px; }
+    .orbit::after { inset: 55px; }
+    .hero-logo { position: relative; z-index: 2; width: 198px; height: 198px; object-fit: contain; filter: drop-shadow(0 22px 45px rgba(126, 171, 162, .2)); }
+    .floating-card { position: absolute; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.14); background: rgba(29,36,45,.88); backdrop-filter: blur(16px); box-shadow: 0 18px 40px rgba(0,0,0,.22); border-radius: 15px; padding: 12px 15px; }
+    .floating-card img { width: 32px; height: 32px; }
+    .floating-card strong { display: block; font-size: 12px; letter-spacing: -.02em; }
+    .floating-card small { display: block; margin-top: 3px; color: #97a2ad; font-size: 10px; }
+    .float-one { top: 42px; right: 10px; }
+    .float-two { bottom: 45px; left: 0; }
+    .section { padding: 77px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
+    .section-kicker { color: var(--mint); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; font-weight: 700; }
+    h2 { margin: 10px 0 0; font-size: clamp(28px, 4vw, 42px); line-height: 1.12; letter-spacing: -.06em; }
+    .section-intro { max-width: 420px; color: var(--muted); line-height: 1.75; font-size: 13px; margin: 0; }
+    .page-feature { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr .8fr; gap: 32px; padding: 35px; border: 1px solid rgba(156,138,255,.22); border-radius: var(--radius); background: linear-gradient(120deg, rgba(156,138,255,.105), rgba(25,31,39,.96) 54%, rgba(25,31,39,.96)); }
+    .page-feature::after { content: ""; position: absolute; width: 360px; height: 360px; right: -80px; bottom: -220px; background: radial-gradient(circle, rgba(156,138,255,.22), transparent 68%); }
+    .page-copy, .page-preview { position: relative; z-index: 1; }
+    .page-title { display: flex; align-items: center; gap: 13px; }
+    .page-title img { width: 48px; height: 48px; }
+    .page-title h3 { margin: 0; font-size: 21px; letter-spacing: -.04em; }
+    .page-title span { display: block; margin-top: 5px; color: #a6aebb; font-size: 11px; }
+    .status { display: inline-flex; align-items: center; margin-top: 27px; padding: 7px 10px; border: 1px solid rgba(211,238,132,.3); border-radius: 999px; color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: .05em; }
+    .page-copy p { max-width: 515px; color: #b2bac3; font-size: 13px; line-height: 1.85; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 15px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .feature-list li { display: flex; align-items: center; gap: 9px; color: #d8dce0; font-size: 11px; }
+    .check { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: rgba(156,138,255,.16); color: #c4baff; font-size: 10px; }
+    .page-preview { display: flex; align-items: center; justify-content: center; min-height: 245px; }
+    .browser-window { width: min(100%, 330px); border: 1px solid rgba(255,255,255,.16); border-radius: 13px; overflow: hidden; background: #12171d; box-shadow: 0 24px 56px rgba(0,0,0,.32); transform: rotate(2deg); }
+    .window-bar { height: 31px; display: flex; align-items: center; gap: 5px; padding: 0 11px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .window-bar i { width: 5px; height: 5px; border-radius: 50%; background: #606a74; }
+    .address { width: 54%; height: 13px; margin-left: 7px; border-radius: 5px; background: #222a33; }
+    .window-content { padding: 23px 22px 27px; }
+    .mock-line { height: 7px; width: 82%; margin: 11px 0; border-radius: 8px; background: #303943; }
+    .mock-line.short { width: 54%; }
+    .mock-line.medium { width: 69%; }
+    .mock-heading { width: 58%; height: 15px; margin: 1px 0 20px; border-radius: 6px; background: #ebe7df; }
+    .mock-highlight { display: inline-block; width: 88%; height: 9px; margin-top: 6px; border-radius: 5px; background: rgba(211,238,132,.72); }
+    .mock-toolbar { position: absolute; right: 5px; top: 78px; display: flex; flex-direction: column; gap: 7px; padding: 9px 7px; border: 1px solid rgba(255,255,255,.17); border-radius: 10px; background: rgba(31,37,47,.96); box-shadow: 0 8px 22px rgba(0,0,0,.25); }
+    .mock-toolbar i { width: 17px; height: 17px; border: 1px solid rgba(211,238,132,.55); border-radius: 5px; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .product { min-height: 174px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: transform .2s, border-color .2s, background .2s; }
+    .product:hover { transform: translateY(-3px); border-color: rgba(228,235,241,.22); background: var(--panel); }
+    .product-top { display: flex; align-items: center; justify-content: space-between; }
+    .product img { width: 38px; height: 38px; }
+    .product-tag { padding: 5px 8px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; color: #9ca7b2; font-size: 9px; }
+    .product h3 { margin: 19px 0 7px; font-size: 14px; letter-spacing: -.02em; }
+    .product p { margin: 0; color: #9aa4ae; font-size: 11px; line-height: 1.65; }
+    .release-note { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding: 15px 17px; border-radius: 13px; background: rgba(211,238,132,.07); color: #b7c2a0; font-size: 11px; }
+    .release-note strong { color: var(--lime); font-weight: 650; }
+    .bottom { padding: 33px 0 42px; border-top: 1px solid var(--line); color: #87919b; font-size: 10px; }
+    .bottom-row { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .bottom .brand { color: #dce1e4; font-size: 13px; }
+    .bottom .brand img { width: 25px; height: 25px; }
+    .bottom-note { margin-top: 13px; color: #717c86; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 34px, 560px); }
+      .topbar { height: 70px; }
+      .nav { gap: 16px; }
+      .nav a { display: none; }
+      .hero { display: block; min-height: auto; padding: 68px 0 55px; }
+      h1 { max-width: 550px; font-size: clamp(43px, 12vw, 67px); }
+      .hero-art { min-height: 330px; margin: 5px 0 -8px; }
+      .orbit { width: 300px; height: 300px; }
+      .hero-logo { width: 160px; height: 160px; }
+      .float-one { top: 15px; right: 0; }
+      .float-two { bottom: 17px; left: 0; }
+      .section { padding: 58px 0; }
+      .section-head { display: block; }
+      .section-intro { margin-top: 13px; }
+      .page-feature { grid-template-columns: 1fr; padding: 24px; gap: 15px; }
+      .page-preview { min-height: 250px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .product { padding: 17px; min-height: 165px; }
+      .bottom-row { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 420px) {
+      .browser-note { gap: 8px; font-size: 10px; }
+      .feature-list { grid-template-columns: 1fr; }
+      .product-grid { gap: 9px; }
+      .product { padding: 14px; }
+      .product-tag { font-size: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#top" aria-label="OwlLinker 首页"><img src="assets/logo.svg" alt=""><span>OwlLinker</span></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#page" data-zh="认识 Page" data-en="Meet Page">认识 Page</a>
+      <a href="#products" data-zh="产品" data-en="Products">产品</a>
+      <button class="language" id="languageButton" type="button" aria-label="Switch language">EN</button>
+    </nav>
+  </header>
+  <main id="top" class="shell">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span><span data-zh="OwlLinker Page 即将发布" data-en="OwlLinker Page · Coming soon">OwlLinker Page 即将发布</span></div>
+        <h1 id="heroTitle" data-zh="让网页工作，<span>更顺手。</span>" data-en="Make the web work <span>for you.</span>">让网页工作，<span>更顺手。</span></h1>
+        <p class="lead" data-zh="OwlLinker 是一组为日常网页工作打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。" data-en="OwlLinker is a family of focused browser extensions for everyday work on the web. We’re starting with Page: practical tools for editing, organizing, and improving the pages you use every day.">OwlLinker 是一组为日常网页工作打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。</p>
+        <div class="actions">
+          <a class="button button-primary" href="#page"><span data-zh="了解 OwlLinker Page" data-en="Explore OwlLinker Page">了解 OwlLinker Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="button button-secondary" href="#products"><span data-zh="查看产品系列" data-en="View the product family">查看产品系列</span></a>
+        </div>
+        <div class="browser-note"><strong>Chrome / Chromium</strong><i></i><strong>Microsoft Edge</strong><i></i><strong>Firefox</strong></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit"></div>
+        <img class="hero-logo" src="assets/logo.svg" alt="">
+        <div class="floating-card float-one"><img src="icons/products/page.svg" alt=""><div><strong>OwlLinker Page</strong><small data-zh="你的网页工具箱" data-en="Your toolkit for the web">你的网页工具箱</small></div></div>
+        <div class="floating-card float-two"><img src="icons/products/search.svg" alt=""><div><strong>One family. Six tools.</strong><small data-zh="为不同任务而设计" data-en="Purpose-built for different tasks">为不同任务而设计</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="page" aria-labelledby="pageHeading">
+      <div class="section-head">
+        <div><div class="section-kicker" data-zh="首个独立扩展" data-en="The first focused extension">首个独立扩展</div><h2 id="pageHeading" data-zh="网页，就是你的工作台。" data-en="The page is your workspace.">网页，就是你的工作台。</h2></div>
+        <p class="section-intro" data-zh="OwlLinker Page 把轻量、直接的网页操作放在手边。只保留 Page 的专属功能，保持清晰，也更容易上手。" data-en="OwlLinker Page keeps useful, lightweight page tools close at hand. It focuses on the Page experience, so the essentials stay clear and easy to reach.">OwlLinker Page 把轻量、直接的网页操作放在手边。只保留 Page 的专属功能，保持清晰，也更容易上手。</p>
+      </div>
+      <article class="page-feature">
+        <div class="page-copy">
+          <div class="page-title"><img src="icons/products/page.svg" alt=""><div><h3>OwlLinker Page</h3><span data-zh="网页编辑与内容增强" data-en="Page editing and content tools">网页编辑与内容增强</span></div></div>
+          <div class="status"><span class="pulse"></span>&nbsp; <span data-zh="即将发布" data-en="COMING SOON">即将发布</span></div>
+          <p data-zh="在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。" data-en="Handle everyday page tasks right where you are: restore text selection and copying, edit page text and styles, highlight key details, and work with links and content without leaving the page.">在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span data-zh="页面文字与样式编辑" data-en="Edit page text and styles">页面文字与样式编辑</span></li>
+            <li><span class="check">✓</span><span data-zh="重点标记与高亮" data-en="Highlight important details">重点标记与高亮</span></li>
+            <li><span class="check">✓</span><span data-zh="解除复制与选择限制" data-en="Restore copy and selection">解除复制与选择限制</span></li>
+            <li><span class="check">✓</span><span data-zh="链接和正文快捷操作" data-en="Quick actions for links and text">链接和正文快捷操作</span></li>
+          </ul>
+        </div>
+        <div class="page-preview" aria-hidden="true">
+          <div class="browser-window">
+            <div class="window-bar"><i></i><i></i><i></i><span class="address"></span></div>
+            <div class="window-content"><div class="mock-heading"></div><div class="mock-line"></div><div class="mock-line medium"></div><div class="mock-highlight"></div><div class="mock-line short"></div><div class="mock-line"></div></div>
+          </div>
+          <div class="mock-toolbar"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </article>
+      <div class="release-note"><span class="pulse"></span><span data-zh="Page 仍在准备中。正式发布前会公布浏览器商店页面与完整功能说明。" data-en="Page is in preparation. Store links and the complete feature list will be shared when it is ready to launch."><strong>Page 仍在准备中。</strong>正式发布前会公布浏览器商店页面与完整功能说明。</span></div>
+    </section>
+
+    <section class="section" id="products" aria-labelledby="productsHeading">
+      <div class="section-head">
+        <div><div class="section-kicker" data-zh="OwlLinker 产品系列" data-en="The OwlLinker family">OwlLinker 产品系列</div><h2 id="productsHeading" data-zh="六个扩展，各司其职。" data-en="Six extensions. One clear purpose each.">六个扩展，各司其职。</h2></div>
+        <p class="section-intro" data-zh="每个扩展围绕一个明确任务设计。Page 将率先推出，其余产品会在准备就绪后逐步开放。" data-en="Each extension is designed around a single purpose. Page is up first; the rest will follow as they are ready.">每个扩展围绕一个明确任务设计。Page 将率先推出，其余产品会在准备就绪后逐步开放。</p>
+      </div>
+      <div class="product-grid">
+        <article class="product"><div class="product-top"><img src="icons/products/page.svg" alt=""><span class="product-tag" style="color:#c4baff;border-color:rgba(156,138,255,.3)" data-zh="即将发布" data-en="Coming soon">即将发布</span></div><h3>OwlLinker Page</h3><p data-zh="编辑、整理并增强当前网页。" data-en="Edit, organize, and improve the page you’re on.">编辑、整理并增强当前网页。</p></article>
+        <article class="product"><div class="product-top"><img src="icons/products/peek.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Peek</h3><p data-zh="预览链接内容，不打断浏览。" data-en="Preview links without interrupting your flow.">预览链接内容，不打断浏览。</p></article>
+        <article class="product"><div class="product-top"><img src="icons/products/drag.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Drag</h3><p data-zh="拖放文字、链接与图片，快速完成操作。" data-en="Drag text, links, and images into quick actions.">拖放文字、链接与图片，快速完成操作。</p></article>
+        <article class="product"><div class="product-top"><img src="icons/products/gestures.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Gestures</h3><p data-zh="用鼠标或触控板手势操作浏览器。" data-en="Navigate with mouse and trackpad gestures.">用鼠标或触控板手势操作浏览器。</p></article>
+        <article class="product"><div class="product-top"><img src="icons/products/search.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Search</h3><p data-zh="在搜索页面间切换，并组合搜索筛选。" data-en="Switch search engines and combine useful filters.">在搜索页面间切换，并组合搜索筛选。</p></article>
+        <article class="product"><div class="product-top"><img src="icons/products/media.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Media</h3><p data-zh="整理网页媒体、字幕与播放操作。" data-en="Work with web media, subtitles, and playback.">整理网页媒体、字幕与播放操作。</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="shell bottom">
+    <div class="bottom-row"><a class="brand" href="#top"><img src="assets/logo.svg" alt=""><span>OwlLinker</span></a><span>© <span id="year"></span> OwlLinker</span><span data-zh="为更顺手的网页工作而做。" data-en="Made for a smoother day on the web.">为更顺手的网页工作而做。</span></div>
+    <div class="bottom-note" data-zh="OwlLinker Page 尚未发布；功能、可用地区与支持的浏览器可能随发布准备调整。" data-en="OwlLinker Page is not yet released. Features, availability, and supported browsers may change before launch.">OwlLinker Page 尚未发布；功能、可用地区与支持的浏览器可能随发布准备调整。</div>
+  </footer>
+  <script>
+    (() => {
+      const button = document.getElementById('languageButton');
+      const nodes = [...document.querySelectorAll('[data-zh][data-en]')];
+      const initial = /^en(?:-|$)/i.test(navigator.language || '') ? 'en' : 'zh';
+      let language = initial;
+      function applyLanguage(next) {
+        language = next;
+        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+        nodes.forEach(node => { node.innerHTML = node.dataset[language]; });
+        button.textContent = language === 'zh' ? 'EN' : '中文';
+        document.title = language === 'zh' ? 'OwlLinker — 让网页工作更顺手' : 'OwlLinker — Make the web work for you';
+      }
+      button.addEventListener('click', () => applyLanguage(language === 'zh' ? 'en' : 'zh'));
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+      applyLanguage(initial);
+    })();
+  </script>
+</body>
+</html>

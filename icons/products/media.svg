@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+
+  <!-- ── EAR TUFTS ── -->
+  <polygon points="36,35 30,12 46,28" fill="#E11D48"/>
+  <polygon points="92,35 98,12 82,28" fill="#E11D48"/>
+
+  <!-- ── FACE CIRCLE ── -->
+  <circle cx="64" cy="68" r="46" fill="#E11D48"/>
+
+  <!-- ── EYES ── -->
+  <!-- Left eye white -->
+  <circle cx="44" cy="62" r="18" fill="white"/>
+  <!-- Left iris -->
+  <circle cx="44" cy="62" r="11" fill="#9F1239"/>
+  <!-- Left pupil -->
+  <circle cx="44" cy="62" r="6"  fill="#1E0A3C"/>
+  <!-- Left shine -->
+  <circle cx="40" cy="57" r="3"  fill="white"/>
+
+  <!-- Right eye white -->
+  <circle cx="84" cy="62" r="18" fill="white"/>
+  <!-- Right iris -->
+  <circle cx="84" cy="62" r="11" fill="#9F1239"/>
+  <!-- Right pupil -->
+  <circle cx="84" cy="62" r="6"  fill="#1E0A3C"/>
+  <!-- Right shine -->
+  <circle cx="80" cy="57" r="3"  fill="white"/>
+
+  <!-- ↗ cursor easter egg in right pupil -->
+  <g transform="translate(85,55) rotate(-38) scale(0.78)">
+    <path d="M0 0 L0 10 L2.8 7.2 L5 11.5 L6.8 10.7 L4.6 6.4 L8 6.4Z"
+          fill="white" opacity="0.8"/>
+  </g>
+
+  <!-- ── BEAK ── -->
+  <polygon points="64,78 59,86 69,86" fill="#FECDD3"/>
+
+
+  <!-- Product marker -->
+  <circle cx="102" cy="103" r="21" fill="#9F1239" stroke="#FFFFFF" stroke-width="3"/>
+  <g aria-hidden="true"><path d="M95 96.5 107 103 95 109.5z" fill="#fff"/><path d="M109 95v12a3 3 0 1 1-2-2.83V97l7-1.5v9.5a3 3 0 1 1-2-2.83V94z" fill="#fff"/></g>
+</svg>
