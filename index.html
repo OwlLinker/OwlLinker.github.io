@@ -146,6 +146,54 @@
       .product { padding: 14px; }
       .product-tag { font-size: 8px; }
     }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --bg: #f7f8f5;
+        --panel: #ffffff;
+        --panel-2: #eef1ed;
+        --text: #1b2423;
+        --muted: #596762;
+        --line: rgba(32, 54, 47, .12);
+        --lime: #55732d;
+        --mint: #4d7967;
+      }
+      .language option { background: #fff; color: #1b2423; }
+      .nav { color: #53615c; }
+      .hero::before { background: radial-gradient(ellipse at center, rgba(111, 136, 147, .16), rgba(247, 248, 245, 0) 68%); }
+      .lead { color: #53615c; }
+      .button-primary { color: #fff; }
+      .button-primary:hover { background: #66863a; }
+      .button-secondary { border-color: rgba(32, 54, 47, .18); color: #35443e; background: rgba(255,255,255,.55); }
+      .button-secondary:hover { border-color: rgba(32, 54, 47, .3); background: #fff; }
+      .browser-note { color: #68756f; }
+      .browser-note strong { color: #44524d; }
+      .browser-note i { background: #98a29d; }
+      .orbit, .orbit::before, .orbit::after { border-color: rgba(74, 112, 98, .16); }
+      .floating-card { border-color: rgba(32, 54, 47, .12); background: rgba(255,255,255,.9); box-shadow: 0 18px 40px rgba(34, 54, 47, .12); }
+      .floating-card small { color: #65736d; }
+      .page-feature { background: linear-gradient(120deg, rgba(156,138,255,.09), rgba(255,255,255,.98) 54%, rgba(255,255,255,.98)); }
+      .page-title span { color: #68756f; }
+      .page-copy p { color: #53615c; }
+      .feature-list li { color: #34413c; }
+      .check { color: #6658b5; background: rgba(156,138,255,.15); }
+      .browser-window { border-color: rgba(32, 54, 47, .16); background: #fff; box-shadow: 0 24px 56px rgba(34,54,47,.15); }
+      .window-bar { border-bottom-color: rgba(32, 54, 47, .1); }
+      .window-bar i { background: #b7c0bb; }
+      .address { background: #edf0ed; }
+      .mock-line { background: #d9dfda; }
+      .mock-heading { background: #47544e; }
+      .mock-toolbar { border-color: rgba(32,54,47,.14); background: rgba(255,255,255,.97); box-shadow: 0 8px 22px rgba(34,54,47,.14); }
+      .product { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.72)); }
+      .product:hover { border-color: rgba(32,54,47,.22); }
+      .product-tag { border-color: rgba(32,54,47,.12); color: #64716c; }
+      .product p { color: #64716c; }
+      .release-note { background: rgba(85,115,45,.08); color: #52634a; }
+      .bottom { color: #66736e; }
+      .bottom .brand { color: #35433d; }
+      .bottom-note { color: #74817b; }
+      .product-tag[style] { color: #6658b5 !important; }
+    }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
 </head>
@@ -337,6 +385,14 @@
       selector.addEventListener('change', () => applyLanguage(selector.value));
       document.getElementById('year').textContent = String(new Date().getFullYear());
       applyLanguage(initialLanguage);
+
+      const colorScheme = window.matchMedia('(prefers-color-scheme: light)');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      const updateThemeColor = event => {
+        themeColor.content = event.matches ? '#f7f8f5' : '#11151b';
+      };
+      updateThemeColor(colorScheme);
+      colorScheme.addEventListener('change', updateThemeColor);
     })();
   </script>
 </body>
