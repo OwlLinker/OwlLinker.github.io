@@ -41,7 +41,8 @@
     .nav { display: flex; align-items: center; gap: 31px; color: #bec5cc; font-size: 13px; }
     .nav a { transition: color .2s ease; }
     .nav a:hover { color: var(--text); }
-    .language { appearance: none; border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 8px 12px; cursor: pointer; font-size: 12px; }
+    .language { border: 1px solid var(--line); background: var(--panel); color: var(--muted); border-radius: 999px; padding: 8px 10px; cursor: pointer; font: inherit; font-size: 12px; }
+    .language option { background: #11131a; color: var(--text); }
     .hero { position: relative; min-height: 575px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 48px; padding: 70px 0 82px; }
     .hero::before { content: ""; position: absolute; width: 530px; height: 440px; right: -80px; top: 42px; background: radial-gradient(ellipse at center, rgba(111, 136, 147, .2), rgba(17, 21, 27, 0) 68%); pointer-events: none; }
     .hero-copy, .hero-art { position: relative; z-index: 1; }
@@ -154,7 +155,13 @@
     <nav class="nav" aria-label="主导航">
       <a href="#page" data-zh="认识 Page" data-en="Meet Page">认识 Page</a>
       <a href="#products" data-zh="产品" data-en="Products">产品</a>
-      <button class="language" id="languageButton" type="button" aria-label="Switch language">EN</button>
+      <select class="language" id="languageSelect" aria-label="语言 / Language">
+        <option value="zh-CN">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+      </select>
     </nav>
   </header>
   <main id="top" class="shell">
@@ -226,20 +233,110 @@
   </footer>
   <script>
     (() => {
-      const button = document.getElementById('languageButton');
+      const selector = document.getElementById('languageSelect');
       const nodes = [...document.querySelectorAll('[data-zh][data-en]')];
-      const initial = /^en(?:-|$)/i.test(navigator.language || '') ? 'en' : 'zh';
-      let language = initial;
-      function applyLanguage(next) {
-        language = next;
-        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-        nodes.forEach(node => { node.innerHTML = node.dataset[language]; });
-        button.textContent = language === 'zh' ? 'EN' : '中文';
-        document.title = language === 'zh' ? 'OwlLinker — 让网页工作更顺手' : 'OwlLinker — Make the web work for you';
+      const translations = {
+        '认识 Page': ['認識 Page', 'Page を見る', 'Page 살펴보기'],
+        '产品': ['產品', '製品', '제품'],
+        'OwlLinker Page 即将发布': ['OwlLinker Page 即將推出', 'OwlLinker Page 近日公開', 'OwlLinker Page 출시 예정'],
+        '让网页工作，<span>更顺手。</span>': ['讓網頁工作，<span>更順手。</span>', 'ウェブを、<span>もっと使いやすく。</span>', '웹 작업을 <span>더 편리하게.</span>'],
+        'Make the web work <span>for you.</span>': ['讓網頁工作，<span>更得心應手。</span>', 'ウェブを、<span>もっと使いやすく。</span>', '웹을 <span>더 편리하게.</span>'],
+        'OwlLinker 是一组为日常网页工作打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。': [
+          'OwlLinker 是一系列為日常網頁工作打造的獨立瀏覽器擴充功能。我們將從 Page 開始，讓常用的頁面編輯、內容整理與網頁增強工具，自然融入你的瀏覽流程。',
+          'OwlLinker は、日々のウェブ作業を支える目的別のブラウザー拡張機能シリーズです。まずは Page から、ページ編集やコンテンツ整理、ウェブ機能の拡張を、いつもの閲覧の流れに取り入れます。',
+          'OwlLinker는 일상적인 웹 작업을 돕는 목적별 브라우저 확장 프로그램 모음입니다. 먼저 Page를 시작으로 페이지 편집, 콘텐츠 정리, 웹 기능 향상 도구를 자연스러운 브라우징 흐름에 더합니다.'
+        ],
+        '了解 OwlLinker Page': ['了解 OwlLinker Page', 'OwlLinker Page を見る', 'OwlLinker Page 알아보기'],
+        '查看产品系列': ['查看產品系列', '製品一覧を見る', '제품 둘러보기'],
+        '你的网页工具箱': ['你的網頁工具箱', 'ウェブ作業のツールボックス', '나만의 웹 도구 상자'],
+        '为不同任务而设计': ['為不同任務而設計', '用途に合わせた設計', '작업별로 설계'],
+        '首个独立扩展': ['首款獨立擴充功能', '最初の専用拡張機能', '첫 번째 독립 확장 프로그램'],
+        '网页，就是你的工作台。': ['網頁，就是你的工作台。', 'ウェブページを、あなたの作業スペースに。', '웹 페이지를 나만의 작업 공간으로.'],
+        'OwlLinker Page 把轻量、直接的网页操作放在手边。只保留 Page 的专属功能，保持清晰，也更容易上手。': [
+          'OwlLinker Page 將輕巧直接的網頁操作放在手邊。專注於 Page 的專屬功能，清楚易懂，也更容易上手。',
+          'OwlLinker Page は、軽快でわかりやすいウェブ操作をすぐ使える場所にまとめます。Page 専用の機能に絞り、シンプルで使いやすくしています。',
+          'OwlLinker Page는 가볍고 직관적인 웹 작업 도구를 가까이에 둡니다. Page 전용 기능에 집중해 명확하고 쉽게 사용할 수 있습니다.'
+        ],
+        '网页编辑与内容增强': ['網頁編輯與內容增強', 'ページ編集とコンテンツ機能', '페이지 편집 및 콘텐츠 도구'],
+        '即将发布': ['即將推出', '近日公開', '출시 예정'],
+        '在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。': [
+          '直接在目前的網頁中完成常見整理與編輯：解除複製限制、編輯文字與樣式、標記重點，並快速處理連結和頁面內容。Page 可獨立運作，不必切換到其他工作介面。',
+          'コピー制限の解除、ページ上のテキストやスタイルの編集、重要箇所の強調表示、リンクやページ内容のすばやい操作を、今見ているページ上で行えます。Page は単独で動作し、別の作業画面に切り替える必要はありません。',
+          '복사 제한 해제, 페이지 텍스트와 스타일 편집, 주요 내용 강조, 링크와 페이지 콘텐츠 빠른 작업을 현재 페이지에서 처리합니다. Page는 독립적으로 작동하므로 다른 작업 화면으로 전환할 필요가 없습니다.'
+        ],
+        '页面文字与样式编辑': ['頁面文字與樣式編輯', 'ページのテキストとスタイルを編集', '페이지 텍스트 및 스타일 편집'],
+        '重点标记与高亮': ['重點標記與醒目提示', '重要箇所をマークして強調', '중요한 부분 표시 및 강조'],
+        '解除复制与选择限制': ['解除複製與選取限制', 'コピーと選択の制限を解除', '복사 및 선택 제한 해제'],
+        '链接和正文快捷操作': ['連結與正文的快速操作', 'リンクと本文のクイック操作', '링크 및 본문 빠른 작업'],
+        'Page 仍在准备中。正式发布前会公布浏览器商店页面与完整功能说明。': [
+          'Page 仍在準備中。正式推出前將公布瀏覽器商店頁面與完整功能說明。',
+          'Page は現在準備中です。正式公開前に、ストアページと全機能の詳細をお知らせします。',
+          'Page는 현재 준비 중입니다. 정식 출시 전에 스토어 페이지와 전체 기능을 안내하겠습니다.'
+        ],
+        'OwlLinker 产品系列': ['OwlLinker 產品系列', 'OwlLinker 製品シリーズ', 'OwlLinker 제품군'],
+        '六个扩展，各司其职。': ['六款擴充功能，各有所長。', '6つの拡張機能、それぞれの役割。', '여섯 가지 확장 프로그램, 각자의 역할.'],
+        '每个扩展围绕一个明确任务设计。Page 将率先推出，其余产品会在准备就绪后逐步开放。': [
+          '每款擴充功能都圍繞明確用途設計。Page 將率先推出，其餘產品準備就緒後也會陸續開放。',
+          '各拡張機能は、それぞれ明確な目的に合わせて設計されています。Page を最初に公開し、ほかの製品も準備が整い次第順次公開します。',
+          '각 확장 프로그램은 하나의 명확한 목적에 맞춰 설계됩니다. Page를 먼저 출시하고, 나머지 제품도 준비되는 대로 공개합니다.'
+        ],
+        '筹备中': ['準備中', '準備中', '준비 중'],
+        '编辑、整理并增强当前网页。': ['編輯、整理並增強目前的網頁。', '今見ているページを編集、整理、強化。', '현재 페이지를 편집하고 정리하며 기능을 더하세요.'],
+        '预览链接内容，不打断浏览。': ['預覽連結內容，不中斷瀏覽。', '閲覧を中断せずにリンクをプレビュー。', '탐색을 방해하지 않고 링크 미리보기.'],
+        '拖放文字、链接与图片，快速完成操作。': ['拖放文字、連結與圖片，快速完成操作。', 'テキスト、リンク、画像をドラッグしてすばやく操作。', '텍스트, 링크, 이미지를 끌어 빠르게 작업하세요.'],
+        '用鼠标或触控板手势操作浏览器。': ['使用滑鼠或觸控板手勢操作瀏覽器。', 'マウスやトラックパッドのジェスチャーで操作。', '마우스와 트랙패드 제스처로 브라우저를 탐색하세요.'],
+        '在搜索页面间切换，并组合搜索筛选。': ['切換搜尋頁面，並組合搜尋篩選條件。', '検索ページを切り替え、検索フィルターを組み合わせ。', '검색 페이지를 전환하고 검색 필터를 조합하세요.'],
+        '整理网页媒体、字幕与播放操作。': ['整理網頁媒體、字幕與播放操作。', 'ウェブメディア、字幕、再生操作をまとめて管理。', '웹 미디어, 자막, 재생을 편리하게 관리하세요.'],
+        '为更顺手的网页工作而做。': ['為更順手的網頁工作而打造。', 'ウェブでの作業を、もっとスムーズに。', '더 편리한 웹 작업을 위해 만들었습니다.'],
+        'OwlLinker Page 尚未发布；功能、可用地区与支持的浏览器可能随发布准备调整。': [
+          'OwlLinker Page 尚未推出；功能、適用地區與支援的瀏覽器可能在正式推出前調整。',
+          'OwlLinker Page はまだ公開されていません。機能、提供地域、対応ブラウザーは公開準備に伴い変更される場合があります。',
+          'OwlLinker Page는 아직 출시되지 않았습니다. 출시 준비 과정에서 기능, 제공 지역 및 지원 브라우저가 변경될 수 있습니다.'
+        ]
+      };
+      const localeInfo = {
+        'zh-CN': { html: 'zh-CN', selectorLabel: '选择语言', title: 'OwlLinker — 让网页工作更顺手', description: '六个专注的浏览器扩展，让网页工作更顺手。OwlLinker Page 即将发布。', ogTitle: 'OwlLinker — 让网页工作更顺手', ogDescription: '六个专注的浏览器扩展，让网页工作更顺手。OwlLinker Page 即将发布。' },
+        'zh-TW': { html: 'zh-TW', selectorLabel: '選擇語言', title: 'OwlLinker — 讓網頁工作更順手', description: '六款各有專注用途的瀏覽器擴充功能，讓網頁工作更順手。OwlLinker Page 即將推出。', ogTitle: 'OwlLinker — 讓網頁工作更順手', ogDescription: '六款各有專注用途的瀏覽器擴充功能，讓網頁工作更順手。OwlLinker Page 即將推出。' },
+        en: { html: 'en', selectorLabel: 'Select language', title: 'OwlLinker — Make the web work for you', description: 'Six focused browser extensions for everyday work on the web. OwlLinker Page is coming soon.', ogTitle: 'OwlLinker — Make the web work for you', ogDescription: 'Six focused browser extensions for everyday work on the web. OwlLinker Page is coming soon.' },
+        ja: { html: 'ja', selectorLabel: '言語を選択', title: 'OwlLinker — ウェブをもっと使いやすく', description: '日々のウェブ作業を支える、目的別のブラウザー拡張機能シリーズ。OwlLinker Page を近日公開予定です。', ogTitle: 'OwlLinker — ウェブをもっと使いやすく', ogDescription: '日々のウェブ作業を支える、目的別のブラウザー拡張機能シリーズ。OwlLinker Page を近日公開予定です。' },
+        ko: { html: 'ko', selectorLabel: '언어 선택', title: 'OwlLinker — 웹 작업을 더 편리하게', description: '일상적인 웹 작업을 위한 여섯 가지 브라우저 확장 프로그램. OwlLinker Page 출시 예정.', ogTitle: 'OwlLinker — 웹 작업을 더 편리하게', ogDescription: '일상적인 웹 작업을 위한 여섯 가지 브라우저 확장 프로그램. OwlLinker Page 출시 예정.' }
+      };
+      function systemLanguage() {
+        const preferences = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
+        for (const preference of preferences) {
+          const tag = preference.toLowerCase();
+          if (/^zh-(tw|hk|mo|hant)(-|$)/i.test(tag) || /^zh-(tw|hk|mo)$/.test(tag)) return 'zh-TW';
+          if (/^zh(?:-|$)/i.test(tag)) return 'zh-CN';
+          if (/^ja(?:-|$)/i.test(tag)) return 'ja';
+          if (/^ko(?:-|$)/i.test(tag)) return 'ko';
+          if (/^en(?:-|$)/i.test(tag)) return 'en';
+        }
+        return 'en';
       }
-      button.addEventListener('click', () => applyLanguage(language === 'zh' ? 'en' : 'zh'));
+      function applyLanguage(language) {
+        const info = localeInfo[language];
+        document.documentElement.lang = info.html;
+        document.title = info.title;
+        document.querySelector('meta[name="description"]').content = info.description;
+        document.querySelector('meta[property="og:title"]').content = info.ogTitle;
+        document.querySelector('meta[property="og:description"]').content = info.ogDescription;
+        document.querySelector('.brand[aria-label]').setAttribute('aria-label', language === 'zh-CN' ? 'OwlLinker 首页' : language === 'zh-TW' ? 'OwlLinker 首頁' : language === 'ja' ? 'OwlLinker ホーム' : language === 'ko' ? 'OwlLinker 홈' : 'OwlLinker home');
+        document.querySelector('nav.nav').setAttribute('aria-label', language === 'zh-CN' ? '主导航' : language === 'zh-TW' ? '主導覽' : language === 'ja' ? 'メインナビゲーション' : language === 'ko' ? '주요 탐색' : 'Main navigation');
+        selector.setAttribute('aria-label', info.selectorLabel);
+        nodes.forEach(node => {
+          const zh = node.dataset.zh;
+          if (language === 'zh-CN') node.innerHTML = zh;
+          else if (language === 'en') node.innerHTML = node.dataset.en;
+          else node.innerHTML = translations[zh]?.[language === 'zh-TW' ? 0 : language === 'ja' ? 1 : 2] || node.dataset.en;
+        });
+        const familyTagline = document.querySelector('.float-two strong');
+        familyTagline.textContent = language === 'zh-CN' ? 'One family. Six tools.' : language === 'zh-TW' ? '一個系列，六款工具。' : language === 'ja' ? 'ひとつのシリーズ、6つのツール。' : language === 'ko' ? '하나의 제품군, 여섯 가지 도구.' : 'One family. Six tools.';
+        selector.value = language;
+      }
+      const initialLanguage = systemLanguage();
+      selector.addEventListener('change', () => applyLanguage(selector.value));
       document.getElementById('year').textContent = String(new Date().getFullYear());
-      applyLanguage(initial);
+      applyLanguage(initialLanguage);
     })();
   </script>
 </body>
