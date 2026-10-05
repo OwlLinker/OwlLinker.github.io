@@ -113,6 +113,13 @@
     .product p { margin: 0; color: #9aa4ae; font-size: 11px; line-height: 1.65; }
     .release-note { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding: 15px 17px; border-radius: 13px; background: rgba(211,238,132,.07); color: #b7c2a0; font-size: 11px; }
     .release-note strong { color: var(--lime); font-weight: 650; }
+    .support-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+    .support-option { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 21px 23px; border: 1px solid var(--line); border-radius: 17px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: transform .2s, border-color .2s, background .2s; }
+    .support-option:hover { transform: translateY(-2px); border-color: rgba(228,235,241,.22); background: var(--panel); }
+    .support-option strong { display: block; font-size: 14px; }
+    .support-option small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .support-action { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 10px; color: var(--text); font-size: 11px; font-weight: 650; transition: border-color .2s, color .2s; }
+    .support-option:hover .support-action { border-color: var(--lime); color: var(--lime); }
     .bottom { padding: 33px 0 42px; border-top: 1px solid var(--line); color: #87919b; font-size: 10px; }
     .bottom-row { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
     .bottom .brand { color: #dce1e4; font-size: 13px; }
@@ -137,6 +144,7 @@
       .page-preview { min-height: 250px; }
       .product-grid { grid-template-columns: repeat(2, 1fr); }
       .product { padding: 17px; min-height: 165px; }
+      .support-links { grid-template-columns: 1fr; }
       .bottom-row { align-items: flex-start; flex-direction: column; }
     }
     @media (max-width: 420px) {
@@ -186,6 +194,8 @@
       .mock-toolbar { border-color: rgba(32,54,47,.14); background: rgba(255,255,255,.97); box-shadow: 0 8px 22px rgba(34,54,47,.14); }
       .product { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.72)); }
       .product:hover { border-color: rgba(32,54,47,.22); }
+      .support-option { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.72)); }
+      .support-option:hover { border-color: rgba(32,54,47,.22); background: #fff; }
       .product-tag { border-color: rgba(32,54,47,.12); color: #64716c; }
       .product p { color: #64716c; }
       .release-note { background: rgba(85,115,45,.08); color: #52634a; }
@@ -278,6 +288,22 @@
         <article class="product"><div class="product-top"><img src="icons/products/media.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Media</h3><p data-zh="整理网页媒体、字幕与播放操作。" data-en="Work with web media, subtitles, and playback.">整理网页媒体、字幕与播放操作。</p></article>
       </div>
     </section>
+    <section class="section" id="support" aria-labelledby="supportHeading">
+      <div class="section-head">
+        <div><div class="section-kicker" data-zh="支持独立开发" data-en="Support independent development">支持独立开发</div><h2 id="supportHeading" data-zh="支持 OwlLinker 持续开发。" data-en="Help OwlLinker keep growing.">支持 OwlLinker 持续开发。</h2></div>
+        <p class="section-intro" data-zh="如果 OwlLinker 对你有帮助，欢迎通过以下任一渠道支持持续维护与开发。" data-en="If OwlLinker has been useful, you can support ongoing maintenance and development through either channel.">如果 OwlLinker 对你有帮助，欢迎通过以下任一渠道支持持续维护与开发。</p>
+      </div>
+      <div class="support-links">
+        <a class="support-option" href="https://www.patreon.com/c/OwlLinker" target="_blank" rel="noopener noreferrer">
+          <span><strong>Patreon</strong><small data-zh="面向国际用户的支持渠道。" data-en="For supporters around the world.">面向国际用户的支持渠道。</small></span>
+          <span class="support-action" data-zh="前往支持 ↗" data-en="Support ↗">前往支持 ↗</span>
+        </a>
+        <a class="support-option" href="https://afdian.com/a/owllinker" target="_blank" rel="noopener noreferrer">
+          <span><strong data-zh="爱发电" data-en="Afdian">爱发电</strong><small data-zh="可使用微信支付或支付宝。" data-en="Supports WeChat Pay and Alipay.">可使用微信支付或支付宝。</small></span>
+          <span class="support-action" data-zh="前往支持 ↗" data-en="Support ↗">前往支持 ↗</span>
+        </a>
+      </div>
+    </section>
   </main>
   <footer class="shell bottom">
     <div class="bottom-row"><a class="brand" href="#top"><img src="assets/logo.svg" alt=""><span>OwlLinker</span></a><span>© <span id="year"></span> OwlLinker</span><span data-zh="为更顺手的网页工作而做。" data-en="Made for a smoother day on the web.">为更顺手的网页工作而做。</span></div>
@@ -300,6 +326,13 @@
         ],
         '了解 OwlLinker Page': ['了解 OwlLinker Page', 'OwlLinker Page を見る', 'OwlLinker Page 알아보기'],
         '查看产品系列': ['查看產品系列', '製品一覧を見る', '제품 둘러보기'],
+        '支持独立开发': ['支持獨立開發', '個人開発を応援', '독립 개발 후원'],
+        '支持 OwlLinker 持续开发。': ['支持 OwlLinker 持續開發。', 'OwlLinker の継続的な開発を応援', 'OwlLinker의 지속적인 개발을 응원해 주세요.'],
+        '如果 OwlLinker 对你有帮助，欢迎通过以下任一渠道支持持续维护与开发。': ['如果 OwlLinker 對你有幫助，歡迎透過以下任一管道支持持續維護與開發。', 'OwlLinker がお役に立てたら、いずれかの方法で継続的な保守と開発をご支援ください。', 'OwlLinker가 도움이 되었다면 아래 채널 중 하나로 지속적인 유지 관리와 개발을 후원해 주세요.'],
+        '面向国际用户的支持渠道。': ['提供給國際用戶的支持管道。', '海外からの支援はこちら。', '해외 이용자를 위한 후원 채널입니다.'],
+        '可使用微信支付或支付宝。': ['可使用 WeChat Pay 或支付寶。', 'WeChat Pay または Alipay を利用できます。', 'WeChat Pay 또는 Alipay를 사용할 수 있습니다.'],
+        '爱发电': ['愛發電', 'Afdian', 'Afdian'],
+        '前往支持 ↗': ['前往支持 ↗', '応援する ↗', '후원하기 ↗'],
         '你的网页工具箱': ['你的網頁工具箱', 'ウェブ作業のツールボックス', '나만의 웹 도구 상자'],
         '为不同任务而设计': ['為不同任務而設計', '用途に合わせた設計', '작업별로 설계'],
         '首个独立扩展': ['首款獨立擴充功能', '最初の専用拡張機能', '첫 번째 독립 확장 프로그램'],
