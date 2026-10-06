@@ -91,18 +91,7 @@
     .feature-list li { display: flex; align-items: center; gap: 9px; color: #d8dce0; font-size: 11px; }
     .check { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: rgba(156,138,255,.16); color: #c4baff; font-size: 10px; }
     .page-preview { display: flex; align-items: center; justify-content: center; min-height: 245px; }
-    .browser-window { width: min(100%, 330px); border: 1px solid rgba(255,255,255,.16); border-radius: 13px; overflow: hidden; background: #12171d; box-shadow: 0 24px 56px rgba(0,0,0,.32); transform: rotate(2deg); }
-    .window-bar { height: 31px; display: flex; align-items: center; gap: 5px; padding: 0 11px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .window-bar i { width: 5px; height: 5px; border-radius: 50%; background: #606a74; }
-    .address { width: 54%; height: 13px; margin-left: 7px; border-radius: 5px; background: #222a33; }
-    .window-content { padding: 23px 22px 27px; }
-    .mock-line { height: 7px; width: 82%; margin: 11px 0; border-radius: 8px; background: #303943; }
-    .mock-line.short { width: 54%; }
-    .mock-line.medium { width: 69%; }
-    .mock-heading { width: 58%; height: 15px; margin: 1px 0 20px; border-radius: 6px; background: #ebe7df; }
-    .mock-highlight { display: inline-block; width: 88%; height: 9px; margin-top: 6px; border-radius: 5px; background: rgba(211,238,132,.72); }
-    .mock-toolbar { position: absolute; right: 5px; top: 78px; display: flex; flex-direction: column; gap: 7px; padding: 9px 7px; border: 1px solid rgba(255,255,255,.17); border-radius: 10px; background: rgba(31,37,47,.96); box-shadow: 0 8px 22px rgba(0,0,0,.25); }
-    .mock-toolbar i { width: 17px; height: 17px; border: 1px solid rgba(211,238,132,.55); border-radius: 5px; }
+    .page-preview-image { display: block; width: min(100%, 450px); height: auto; border: 1px solid rgba(255,255,255,.16); border-radius: 15px; box-shadow: 0 24px 56px rgba(0,0,0,.2); }
     .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
     .product { min-height: 174px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: transform .2s, border-color .2s, background .2s; }
     .product:hover { transform: translateY(-3px); border-color: rgba(228,235,241,.22); background: var(--panel); }
@@ -190,11 +179,6 @@
       .check { color: #6658b5; background: rgba(156,138,255,.15); }
       .browser-window { border-color: rgba(32, 54, 47, .16); background: #fff; box-shadow: 0 24px 56px rgba(34,54,47,.15); }
       .window-bar { border-bottom-color: rgba(32, 54, 47, .1); }
-      .window-bar i { background: #b7c0bb; }
-      .address { background: #edf0ed; }
-      .mock-line { background: #d9dfda; }
-      .mock-heading { background: #47544e; }
-      .mock-toolbar { border-color: rgba(32,54,47,.14); background: rgba(255,255,255,.97); box-shadow: 0 8px 22px rgba(34,54,47,.14); }
       .product { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.72)); }
       .product:hover { border-color: rgba(32,54,47,.22); }
       .support-option { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.72)); }
@@ -268,13 +252,7 @@
             <li><span class="check">✓</span><span data-zh="修改留存：刷新后仍保留修改后的样式" data-en="Persistent edits: Keep style changes after refreshing">修改留存：刷新后仍保留修改后的样式</span></li>
           </ul>
         </div>
-        <div class="page-preview" aria-hidden="true">
-          <div class="browser-window">
-            <div class="window-bar"><i></i><i></i><i></i><span class="address"></span></div>
-            <div class="window-content"><div class="mock-heading"></div><div class="mock-line"></div><div class="mock-line medium"></div><div class="mock-highlight"></div><div class="mock-line short"></div><div class="mock-line"></div></div>
-          </div>
-          <div class="mock-toolbar"><i></i><i></i><i></i><i></i></div>
-        </div>
+        <div class="page-preview"><img class="page-preview-image" src="assets/page-toolbar.png" alt="OwlLinker Page 页面工具栏与常用功能入口"></div>
       </article>
       <div class="release-note"><span class="pulse"></span><span data-zh="OwlLinker Page 现已上架 Microsoft Edge 加载项。" data-en="OwlLinker Page is now available on Microsoft Edge Add-ons.">OwlLinker Page 现已上架 Microsoft Edge 加载项。</span><a href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer" data-zh="立即获取 ↗" data-en="Get it now ↗">立即获取 ↗</a></div>
     </section>
