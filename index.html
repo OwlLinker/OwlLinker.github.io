@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#11151b">
-  <meta name="description" content="OwlLinker Page 已在 Microsoft Edge Add-ons 发布。编辑、整理并增强当前网页。">
+  <meta name="description" content="OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。编辑、整理并增强当前网页。">
   <meta property="og:title" content="OwlLinker — Make the web work for you">
-  <meta property="og:description" content="OwlLinker Page 已在 Microsoft Edge Add-ons 发布。编辑、整理并增强当前网页。">
+  <meta property="og:description" content="OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。编辑、整理并增强当前网页。">
   <meta property="og:image" content="assets/logo.png">
   <title>OwlLinker — 让网页工作更顺手</title>
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
@@ -105,6 +105,8 @@
     .release-note { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding: 15px 17px; border-radius: 13px; background: rgba(211,238,132,.07); color: #b7c2a0; font-size: 11px; }
     .release-note strong { color: var(--lime); font-weight: 650; }
     .release-note a { margin-left: auto; color: var(--lime); font-weight: 650; white-space: nowrap; }
+    .release-note .store-links { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+    .release-note .store-links a { margin-left: 0; }
     .support-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
     .support-option { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 21px 23px; border: 1px solid var(--line); border-radius: 17px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: transform .2s, border-color .2s, background .2s; }
     .support-option:hover { transform: translateY(-2px); border-color: rgba(228,235,241,.22); background: var(--panel); }
@@ -213,13 +215,13 @@
   <main id="top" class="shell">
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse"></span><span data-zh="OwlLinker Page 已在 Edge 发布" data-en="OwlLinker Page is now on Edge">OwlLinker Page 已在 Edge 发布</span></div>
+        <div class="eyebrow"><span class="pulse"></span><span data-zh="OwlLinker Page 已在 Edge 和 Firefox 发布" data-en="OwlLinker Page is now on Edge and Firefox">OwlLinker Page 已在 Edge 和 Firefox 发布</span></div>
         <h1 id="heroTitle" data-zh="让网页，<span>更顺手。</span>" data-en="Make the web work <span>for you.</span>">让网页，<span>更顺手。</span></h1>
         <p class="lead" data-zh="OwlLinker 是为日常学习、工作、研究打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。" data-en="OwlLinker is a standalone browser extension built for everyday learning, work, and research. We’re starting with Page, bringing practical tools for editing, organizing, and enhancing web pages into your browsing workflow.">OwlLinker 是为日常学习、工作、研究打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。</p>
         <div class="actions">
-          <a class="button button-primary" href="#page"><span data-zh="了解 OwlLinker Page" data-en="Explore OwlLinker Page">了解 OwlLinker Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="button button-secondary" href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer"><span data-zh="从 Edge 加载项获取 ↗" data-en="Get it from Edge Add-ons ↗">从 Edge 加载项获取 ↗</span></a>
-          <a class="button button-secondary" href="#products"><span data-zh="查看产品系列" data-en="View the product family">查看产品系列</span></a>
+          <a class="button button-primary" href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer"><span data-zh="从 Edge 加载项获取 ↗" data-en="Get it from Edge Add-ons ↗">从 Edge 加载项获取 ↗</span></a>
+          <a class="button button-secondary" href="https://addons.mozilla.org/zh-CN/firefox/addon/owllinker-page/" target="_blank" rel="noopener noreferrer"><span data-zh="从 Firefox 扩展商店获取 ↗" data-en="Get it from Firefox Add-ons ↗">从 Firefox 扩展商店获取 ↗</span></a>
+          <a class="button button-secondary" href="#page"><span data-zh="了解 OwlLinker Page" data-en="Explore OwlLinker Page">了解 OwlLinker Page</span></a>
         </div>
         <div class="browser-note"><strong>Chrome / Chromium</strong><i></i><strong>Microsoft Edge</strong><i></i><strong>Firefox</strong></div>
       </div>
@@ -239,7 +241,7 @@
       <article class="page-feature">
         <div class="page-copy">
           <div class="page-title"><img src="icons/products/page.svg" alt=""><div><h3>OwlLinker Page</h3><span data-zh="网页编辑与内容增强" data-en="Page editing and content tools">网页编辑与内容增强</span></div></div>
-          <div class="status"><span class="pulse"></span>&nbsp; <span data-zh="已在 Microsoft Edge 发布" data-en="AVAILABLE ON MICROSOFT EDGE">已在 Microsoft Edge 发布</span></div>
+          <div class="status"><span class="pulse"></span>&nbsp; <span data-zh="已在 Edge 和 Firefox 发布" data-en="AVAILABLE ON EDGE AND FIREFOX">已在 Edge 和 Firefox 发布</span></div>
           <p data-zh="在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。" data-en="Handle everyday page tasks right where you are: restore text selection and copying, edit page text and styles, highlight key details, and work with links and content without leaving the page.">在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。</p>
           <ul class="feature-list">
             <li><span class="check">✓</span><span data-zh="页面编辑：随心修改文字、链接" data-en="Page editing: Change text and links freely">页面编辑：随心修改文字、链接</span></li>
@@ -254,16 +256,16 @@
         </div>
         <div class="page-preview"><img class="page-preview-image" src="assets/page-toolbar.png" alt="OwlLinker Page 页面工具栏与常用功能入口"></div>
       </article>
-      <div class="release-note"><span class="pulse"></span><span data-zh="OwlLinker Page 现已上架 Microsoft Edge 加载项。" data-en="OwlLinker Page is now available on Microsoft Edge Add-ons.">OwlLinker Page 现已上架 Microsoft Edge 加载项。</span><a href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer" data-zh="立即获取 ↗" data-en="Get it now ↗">立即获取 ↗</a></div>
+      <div class="release-note"><span class="pulse"></span><span data-zh="OwlLinker Page 现已上架 Microsoft Edge 和 Firefox 扩展商店。" data-en="OwlLinker Page is now available on Microsoft Edge Add-ons and Firefox Add-ons.">OwlLinker Page 现已上架 Microsoft Edge 和 Firefox 扩展商店。</span><span class="store-links"><a href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer" data-zh="Edge ↗" data-en="Edge ↗">Edge ↗</a><a href="https://addons.mozilla.org/zh-CN/firefox/addon/owllinker-page/" target="_blank" rel="noopener noreferrer" data-zh="Firefox ↗" data-en="Firefox ↗">Firefox ↗</a></span></div>
     </section>
 
     <section class="section" id="products" aria-labelledby="productsHeading">
       <div class="section-head">
         <div><div class="section-kicker" data-zh="OwlLinker 产品系列" data-en="The OwlLinker family">OwlLinker 产品系列</div><h2 id="productsHeading" data-zh="六个扩展，各司其职。" data-en="Six extensions. One clear purpose each.">六个扩展，各司其职。</h2></div>
-        <p class="section-intro" data-zh="每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 发布，其余产品会在准备就绪后逐步开放。" data-en="Each extension is designed around a single purpose. Page is now available on Microsoft Edge; the rest will follow as they are ready.">每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 发布，其余产品会在准备就绪后逐步开放。</p>
+        <p class="section-intro" data-zh="每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 和 Firefox 发布，其余产品会在准备就绪后逐步开放。" data-en="Each extension is designed around a single purpose. Page is now available on Microsoft Edge and Firefox; the rest will follow as they are ready.">每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 和 Firefox 发布，其余产品会在准备就绪后逐步开放。</p>
       </div>
       <div class="product-grid">
-        <article class="product"><div class="product-top"><img src="icons/products/page.svg" alt=""><span class="product-tag" style="color:#c4baff;border-color:rgba(156,138,255,.3)" data-zh="Edge 已上架" data-en="On Edge Add-ons">Edge 已上架</span></div><h3>OwlLinker Page</h3><p data-zh="编辑、整理并增强当前网页。" data-en="Edit, organize, and improve the page you’re on.">编辑、整理并增强当前网页。</p><a class="product-store-link" href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer" data-zh="在 Edge 加载项中查看 ↗" data-en="View on Edge Add-ons ↗">在 Edge 加载项中查看 ↗</a></article>
+        <article class="product"><div class="product-top"><img src="icons/products/page.svg" alt=""><span class="product-tag" style="color:#c4baff;border-color:rgba(156,138,255,.3)" data-zh="Edge 与 Firefox 已上架" data-en="On Edge and Firefox">Edge 与 Firefox 已上架</span></div><h3>OwlLinker Page</h3><p data-zh="编辑、整理并增强当前网页。" data-en="Edit, organize, and improve the page you’re on.">编辑、整理并增强当前网页。</p><a class="product-store-link" href="https://microsoftedge.microsoft.com/addons/detail/gjcpommheneebkcjelnfikmcjfbhcdjh" target="_blank" rel="noopener noreferrer" data-zh="在 Edge 加载项中查看 ↗" data-en="View on Edge Add-ons ↗">在 Edge 加载项中查看 ↗</a><a class="product-store-link" href="https://addons.mozilla.org/zh-CN/firefox/addon/owllinker-page/" target="_blank" rel="noopener noreferrer" data-zh="在 Firefox 扩展商店中查看 ↗" data-en="View on Firefox Add-ons ↗">在 Firefox 扩展商店中查看 ↗</a></article>
         <article class="product"><div class="product-top"><img src="icons/products/peek.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Peek</h3><p data-zh="预览链接内容，不打断浏览。" data-en="Preview links without interrupting your flow.">预览链接内容，不打断浏览。</p></article>
         <article class="product"><div class="product-top"><img src="icons/products/drag.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Drag</h3><p data-zh="拖放文字、链接与图片，快速完成操作。" data-en="Drag text, links, and images into quick actions.">拖放文字、链接与图片，快速完成操作。</p></article>
         <article class="product"><div class="product-top"><img src="icons/products/gestures.svg" alt=""><span class="product-tag" data-zh="筹备中" data-en="In the works">筹备中</span></div><h3>OwlLinker Gestures</h3><p data-zh="用鼠标或触控板手势操作浏览器。" data-en="Navigate with mouse and trackpad gestures.">用鼠标或触控板手势操作浏览器。</p></article>
@@ -290,7 +292,7 @@
   </main>
   <footer class="shell bottom">
     <div class="bottom-row"><a class="brand" href="#top"><img src="assets/logo.svg" alt=""><span>OwlLinker</span></a><span>© <span id="year"></span> OwlLinker</span><span data-zh="为更顺手的网页工作而做。" data-en="Made for a smoother day on the web.">为更顺手的网页工作而做。</span></div>
-    <div class="bottom-note" data-zh="OwlLinker Page 已在 Microsoft Edge 加载项发布。其他浏览器商店的上架情况以各商店页面为准。" data-en="OwlLinker Page is available on Microsoft Edge Add-ons. Availability in other browser stores may vary.">OwlLinker Page 已在 Microsoft Edge 加载项发布。其他浏览器商店的上架情况以各商店页面为准。</div>
+    <div class="bottom-note" data-zh="OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。" data-en="OwlLinker Page is available on Microsoft Edge Add-ons and Firefox Add-ons.">OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。</div>
   </footer>
   <script>
     (() => {
@@ -299,7 +301,7 @@
       const translations = {
         '认识 Page': ['認識 Page', 'Page を見る', 'Page 살펴보기'],
         '产品': ['產品', '製品', '제품'],
-        'OwlLinker Page 已在 Edge 发布': ['OwlLinker Page 已在 Edge 上架', 'OwlLinker Page が Edge で公開中', 'OwlLinker Page Edge 출시'],
+        'OwlLinker Page 已在 Edge 和 Firefox 发布': ['OwlLinker Page 已在 Edge 和 Firefox 上架', 'OwlLinker Page が Edge と Firefox で公開中', 'OwlLinker Page Edge 및 Firefox 출시'],
         '让网页，<span>更顺手。</span>': ['讓網頁，<span>更順手。</span>', 'ウェブを、<span>もっと使いやすく。</span>', '웹 작업을 <span>더 편리하게.</span>'],
         'Make the web work <span>for you.</span>': ['讓網頁工作，<span>更得心應手。</span>', 'ウェブを、<span>もっと使いやすく。</span>', '웹을 <span>더 편리하게.</span>'],
         'OwlLinker 是为日常学习、工作、研究打造的独立浏览器扩展。先从 Page 开始，把常用的页面编辑、内容整理和网页增强工具，放回你的浏览流程里。': [
@@ -309,6 +311,7 @@
         ],
         '了解 OwlLinker Page': ['了解 OwlLinker Page', 'OwlLinker Page を見る', 'OwlLinker Page 알아보기'],
         '从 Edge 加载项获取 ↗': ['從 Edge 附加元件取得 ↗', 'Edge アドオンから入手 ↗', 'Edge 추가 기능에서 받기 ↗'],
+        '从 Firefox 扩展商店获取 ↗': ['從 Firefox 擴充套件商店取得 ↗', 'Firefox アドオンから入手 ↗', 'Firefox 부가 기능에서 받기 ↗'],
         '查看产品系列': ['查看產品系列', '製品一覧を見る', '제품 둘러보기'],
         '支持独立开发': ['支持獨立開發', '個人開発を応援', '독립 개발 후원'],
         '支持 OwlLinker 持续开发。': ['支持 OwlLinker 持續開發。', 'OwlLinker の継続的な開発を応援', 'OwlLinker의 지속적인 개발을 응원해 주세요.'],
@@ -327,7 +330,7 @@
           'OwlLinker Page는 가볍고 직관적인 웹 작업 도구를 가까이에 둡니다. Page 전용 기능에 집중해 명확하고 쉽게 사용할 수 있습니다.'
         ],
         '网页编辑与内容增强': ['網頁編輯與內容增強', 'ページ編集とコンテンツ機能', '페이지 편집 및 콘텐츠 도구'],
-        '已在 Microsoft Edge 发布': ['已在 Microsoft Edge 上架', 'Microsoft Edge で公開中', 'Microsoft Edge 출시'],
+        '已在 Edge 和 Firefox 发布': ['已在 Edge 和 Firefox 上架', 'Edge と Firefox で公開中', 'Edge 및 Firefox 출시'],
         '在当前网页中完成常见整理与编辑：解除复制限制、编辑页面文字与样式、标记重点，并快速处理链接和页面内容。Page 独立运行，不需要切换到另一套工作界面。': [
           '直接在目前的網頁中完成常見整理與編輯：解除複製限制、編輯文字與樣式、標記重點，並快速處理連結和頁面內容。Page 可獨立運作，不必切換到其他工作介面。',
           'コピー制限の解除、ページ上のテキストやスタイルの編集、重要箇所の強調表示、リンクやページ内容のすばやい操作を、今見ているページ上で行えます。Page は単独で動作し、別の作業画面に切り替える必要はありません。',
@@ -341,17 +344,17 @@
         '关键词高亮：预设关键词，气泡间跳转': ['關鍵字標註：預設關鍵字，氣泡跳轉', 'キーワード強調：キーワードを登録し、吹き出しで移動', '키워드 강조: 키워드를 저장하고 말풍선으로 이동'],
         '页面内容增强：解锁复制限制、激活文本链接': ['頁面內容增強：解除複製限制、啟用文字連結', 'ページ機能強化：コピー制限を解除し、テキストリンクを有効化', '페이지 기능 강화: 복사 제한 해제, 텍스트 링크 활성화'],
         '修改留存：刷新后仍保留修改后的样式': ['修改保留：重新整理後仍保留修改樣式', '変更を保持：再読み込み後も編集したスタイルを維持', '변경 유지: 새로고침 후에도 수정된 스타일 유지'],
-        'OwlLinker Page 现已上架 Microsoft Edge 加载项。': ['OwlLinker Page 現已上架 Microsoft Edge 附加元件。', 'OwlLinker Page が Microsoft Edge アドオンで公開されました。', 'OwlLinker Page가 Microsoft Edge 추가 기능에 등록되었습니다.'],
-        '立即获取 ↗': ['立即取得 ↗', '今すぐ入手 ↗', '지금 받기 ↗'],
+        'OwlLinker Page 现已上架 Microsoft Edge 和 Firefox 扩展商店。': ['OwlLinker Page 現已上架 Microsoft Edge 與 Firefox 擴充套件商店。', 'OwlLinker Page が Microsoft Edge アドオンと Firefox アドオンで公開されました。', 'OwlLinker Page가 Microsoft Edge 및 Firefox 부가 기능에 등록되었습니다.'],
         'OwlLinker 产品系列': ['OwlLinker 產品系列', 'OwlLinker 製品シリーズ', 'OwlLinker 제품군'],
         '六个扩展，各司其职。': ['六款擴充功能，各有所長。', '6つの拡張機能、それぞれの役割。', '여섯 가지 확장 프로그램, 각자의 역할.'],
-        '每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 发布，其余产品会在准备就绪后逐步开放。': [
-          '每款擴充功能都圍繞明確用途設計。Page 已在 Microsoft Edge 上架，其餘產品準備就緒後也會陸續開放。',
-          '各拡張機能は、それぞれ明確な目的に合わせて設計されています。Page は Microsoft Edge で公開中で、ほかの製品も準備が整い次第順次公開します。',
-          '각 확장 프로그램은 하나의 명확한 목적에 맞춰 설계됩니다. Page는 Microsoft Edge에서 제공되며, 나머지 제품도 준비되는 대로 공개합니다.'
+        '每个扩展围绕一个明确任务设计。Page 已在 Microsoft Edge 和 Firefox 发布，其余产品会在准备就绪后逐步开放。': [
+          '每款擴充功能都圍繞明確用途設計。Page 已在 Microsoft Edge 和 Firefox 上架，其餘產品準備就緒後也會陸續開放。',
+          '各拡張機能は、それぞれ明確な目的に合わせて設計されています。Page は Microsoft Edge と Firefox で公開中で、ほかの製品も準備が整い次第順次公開します。',
+          '각 확장 프로그램은 하나의 명확한 목적에 맞춰 설계됩니다. Page는 Microsoft Edge와 Firefox에서 제공되며, 나머지 제품도 준비되는 대로 공개합니다.'
         ],
-        'Edge 已上架': ['Edge 已上架', 'Edge で公開中', 'Edge 출시'],
+        'Edge 与 Firefox 已上架': ['Edge 與 Firefox 已上架', 'Edge と Firefox で公開中', 'Edge 및 Firefox 출시'],
         '在 Edge 加载项中查看 ↗': ['在 Edge 附加元件中查看 ↗', 'Edge アドオンで見る ↗', 'Edge 추가 기능에서 보기 ↗'],
+        '在 Firefox 扩展商店中查看 ↗': ['在 Firefox 擴充套件商店中查看 ↗', 'Firefox アドオンで見る ↗', 'Firefox 부가 기능에서 보기 ↗'],
         '筹备中': ['準備中', '準備中', '준비 중'],
         '编辑、整理并增强当前网页。': ['編輯、整理並增強目前的網頁。', '今見ているページを編集、整理、強化。', '현재 페이지를 편집하고 정리하며 기능을 더하세요.'],
         '预览链接内容，不打断浏览。': ['預覽連結內容，不中斷瀏覽。', '閲覧を中断せずにリンクをプレビュー。', '탐색을 방해하지 않고 링크 미리보기.'],
@@ -360,18 +363,18 @@
         '在搜索页面间切换，并组合搜索筛选。': ['切換搜尋頁面，並組合搜尋篩選條件。', '検索ページを切り替え、検索フィルターを組み合わせ。', '검색 페이지를 전환하고 검색 필터를 조합하세요.'],
         '整理网页媒体、字幕与播放操作。': ['整理網頁媒體、字幕與播放操作。', 'ウェブメディア、字幕、再生操作をまとめて管理。', '웹 미디어, 자막, 재생을 편리하게 관리하세요.'],
         '为更顺手的网页工作而做。': ['為更順手的網頁工作而打造。', 'ウェブでの作業を、もっとスムーズに。', '더 편리한 웹 작업을 위해 만들었습니다.'],
-        'OwlLinker Page 已在 Microsoft Edge 加载项发布。其他浏览器商店的上架情况以各商店页面为准。': [
-          'OwlLinker Page 已在 Microsoft Edge 附加元件上架。其他瀏覽器商店的上架情況請以各商店頁面為準。',
-          'OwlLinker Page は Microsoft Edge アドオンで公開中です。ほかのブラウザーのストアについては各ストアページをご確認ください。',
-          'OwlLinker Page는 Microsoft Edge 추가 기능에서 제공됩니다. 다른 브라우저 스토어의 등록 여부는 각 스토어 페이지를 확인해 주세요.'
+        'OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。': [
+          'OwlLinker Page 已在 Microsoft Edge 和 Firefox 擴充套件商店上架。',
+          'OwlLinker Page は Microsoft Edge アドオンと Firefox アドオンで公開中です。',
+          'OwlLinker Page는 Microsoft Edge 및 Firefox 부가 기능에서 제공됩니다.'
         ]
       };
       const localeInfo = {
-        'zh-CN': { html: 'zh-CN', selectorLabel: '选择语言', title: 'OwlLinker — 让网页，更顺手。', description: 'OwlLinker Page 已在 Microsoft Edge 加载项发布。编辑、整理并增强当前网页。', ogTitle: 'OwlLinker — 让网页，更顺手。', ogDescription: 'OwlLinker Page 已在 Microsoft Edge 加载项发布。编辑、整理并增强当前网页。' },
-        'zh-TW': { html: 'zh-TW', selectorLabel: '選擇語言', title: 'OwlLinker — 讓網頁，更順手。', description: 'OwlLinker Page 已在 Microsoft Edge 附加元件上架。編輯、整理並增強目前的網頁。', ogTitle: 'OwlLinker — 讓網頁，更順手。', ogDescription: 'OwlLinker Page 已在 Microsoft Edge 附加元件上架。編輯、整理並增強目前的網頁。' },
-        en: { html: 'en', selectorLabel: 'Select language', title: 'OwlLinker — Make the web work for you', description: 'OwlLinker Page is now available on Microsoft Edge Add-ons. Edit, organize, and improve the page you’re on.', ogTitle: 'OwlLinker — Make the web work for you', ogDescription: 'OwlLinker Page is now available on Microsoft Edge Add-ons. Edit, organize, and improve the page you’re on.' },
-        ja: { html: 'ja', selectorLabel: '言語を選択', title: 'OwlLinker — ウェブをもっと使いやすく', description: 'OwlLinker Page が Microsoft Edge アドオンで公開されました。ページを編集、整理、強化できます。', ogTitle: 'OwlLinker — ウェブをもっと使いやすく', ogDescription: 'OwlLinker Page が Microsoft Edge アドオンで公開されました。ページを編集、整理、強化できます。' },
-        ko: { html: 'ko', selectorLabel: '언어 선택', title: 'OwlLinker — 웹 작업을 더 편리하게', description: 'OwlLinker Page가 Microsoft Edge 추가 기능에 등록되었습니다. 웹 페이지를 편집하고 정리하며 기능을 더하세요.', ogTitle: 'OwlLinker — 웹 작업을 더 편리하게', ogDescription: 'OwlLinker Page가 Microsoft Edge 추가 기능에 등록되었습니다. 웹 페이지를 편집하고 정리하며 기능을 더하세요.' }
+        'zh-CN': { html: 'zh-CN', selectorLabel: '选择语言', title: 'OwlLinker — 让网页，更顺手。', description: 'OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。编辑、整理并增强当前网页。', ogTitle: 'OwlLinker — 让网页，更顺手。', ogDescription: 'OwlLinker Page 已在 Microsoft Edge 和 Firefox 扩展商店发布。编辑、整理并增强当前网页。' },
+        'zh-TW': { html: 'zh-TW', selectorLabel: '選擇語言', title: 'OwlLinker — 讓網頁，更順手。', description: 'OwlLinker Page 已在 Microsoft Edge 和 Firefox 擴充套件商店上架。編輯、整理並增強目前的網頁。', ogTitle: 'OwlLinker — 讓網頁，更順手。', ogDescription: 'OwlLinker Page 已在 Microsoft Edge 和 Firefox 擴充套件商店上架。編輯、整理並增強目前的網頁。' },
+        en: { html: 'en', selectorLabel: 'Select language', title: 'OwlLinker — Make the web work for you', description: 'OwlLinker Page is now available on Microsoft Edge Add-ons and Firefox Add-ons. Edit, organize, and improve the page you’re on.', ogTitle: 'OwlLinker — Make the web work for you', ogDescription: 'OwlLinker Page is now available on Microsoft Edge Add-ons and Firefox Add-ons. Edit, organize, and improve the page you’re on.' },
+        ja: { html: 'ja', selectorLabel: '言語を選択', title: 'OwlLinker — ウェブをもっと使いやすく', description: 'OwlLinker Page が Microsoft Edge アドオンと Firefox アドオンで公開されました。ページを編集、整理、強化できます。', ogTitle: 'OwlLinker — ウェブをもっと使いやすく', ogDescription: 'OwlLinker Page が Microsoft Edge アドオンと Firefox アドオンで公開されました。ページを編集、整理、強化できます。' },
+        ko: { html: 'ko', selectorLabel: '언어 선택', title: 'OwlLinker — 웹 작업을 더 편리하게', description: 'OwlLinker Page가 Microsoft Edge 및 Firefox 부가 기능에 등록되었습니다. 웹 페이지를 편집하고 정리하며 기능을 더하세요.', ogTitle: 'OwlLinker — 웹 작업을 더 편리하게', ogDescription: 'OwlLinker Page가 Microsoft Edge 및 Firefox 부가 기능에 등록되었습니다. 웹 페이지를 편집하고 정리하며 기능을 더하세요.' }
       };
       function systemLanguage() {
         const preferences = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
